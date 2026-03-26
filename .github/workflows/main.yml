@@ -1,0 +1,34 @@
+name: Run JS File
+
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Enter your name"
+        required: true
+        default: "World"
+
+jobs:
+  run-js:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run JS script
+        id: runjs
+        run: node script.js
+        env:
+          INPUT_NAME: ${{ github.event.inputs.name }}
+
+      - name: Show output
+        run: echo "Output from JS: ${{ steps.runjs.outputs.result }}"
