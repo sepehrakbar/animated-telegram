@@ -1,14 +1,11 @@
 {
-  "name": "My Codespace Environment",
-  "postCreateCommand": "bash script.sh",
   "forwardPorts": [8080],
+  "postStartCommand": "bash script.sh",
   "portsAttributes": {
     "8080": {
-      "label": "My Web App",
-      "onAutoForward": "notify"
+      "label": "app",
+      "onAutoForward": "openBrowser",
+      "visibility": "public"
     }
-  },
-  "otherPortsAttributes": {
-    "onAutoForward": "ignore"
   }
 }
